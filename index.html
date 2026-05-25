@@ -1,458 +1,687 @@
-<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<!DOCTYPE html>
+<html class="light" lang="en">
+<head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1.0" name="viewport">
 <title>Lead Registration | Century Advantage</title>
-<!-- Brand Fonts: Stolzl (Primary) & Avenir (Secondary) - Using fallbacks as CDN availability varies -->
 <link href="https://fonts.googleapis.com" rel="preconnect">
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Montserrat:wght@600;700&amp;family=Nunito+Sans:wght@400;600&amp;family=Metropolis:wght@400;500;600&amp;display=swap" rel="stylesheet">
-<!-- Material Symbols -->
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
-<!-- Tailwind CSS -->
+<link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Nunito+Sans:wght@400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    "colors": {
-                        "primary": "#6440A2",
-                        "accent": "#F9685B",
-                        "heritage": "#FCFFC8",
-                        "mist": "#A1D2F2",
-                        "surface": "#F8F9FF",
-                        "on-surface": "#0b1c30",
-                        "on-surface-variant": "#4a4550",
-                        "outline-variant": "#ccc3d2",
-                        "surface-container": "#002233",
-                    },
-                    "borderRadius": {
-                        "DEFAULT": "0.25rem",
-                        "lg": "0.5rem",
-                        "xl": "0.75rem",
-                        "full": "9999px"
-                    },
-                    "spacing": {
-                        "stack-lg": "32px",
-                        "stack-md": "16px",
-                        "container-max": "1200px",
-                        "stack-sm": "8px",
-                        "margin-mobile": "16px",
-                        "form-max": "560px",
-                        "gutter": "24px"
-                    },
-                    "fontFamily": {
-                        "headline": ["Hanken Grotesk", "Montserrat", "sans-serif"],
-                        "body": ["Nunito Sans", "Metropolis", "sans-serif"],
-                    }
-                }
-            }
-        }
-    </script>
+<script>
+  tailwind.config = {
+    darkMode: "class",
+    theme: {
+      extend: {
+        colors: {
+          "primary":            "#6440A2",
+          "accent":             "#F9685B",
+          "heritage":           "#FCFFC8",
+          "mist":               "#A1D2F2",
+          "on-surface":         "#0b1c30",
+          "on-surface-variant": "#4a4550",
+          "outline-variant":    "#ccc3d2",
+        },
+        fontFamily: {
+          "headline": ["Hanken Grotesk", "sans-serif"],
+          "body":     ["Nunito Sans",    "sans-serif"],
+        },
+      }
+    }
+  }
+</script>
 <style>
-        .material-symbols-outlined {
-            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-        }
-        .form-input-focus:focus {
-            outline: none;
-            border-color: #6440A2;
-            box-shadow: 0 0 0 2px rgba(100, 64, 162, 0.1);
-        }
-        body { font-family: 'Nunito Sans', 'Metropolis', sans-serif; }
-        h1, h2, h3, .font-headline { font-family: 'Hanken Grotesk', 'Montserrat', sans-serif; }
-        
-        /* Custom Dropdown Animation */
-        #budgetDropdownMenu {
-            transition: opacity 0.15s ease-out, transform 0.15s ease-out;
-            transform-origin: top;
-        }
-        #budgetDropdownMenu.hidden {
-            display: none;
-            opacity: 0;
-            transform: scaleY(0.95);
-        }
-        #budgetDropdownMenu:not(.hidden) {
-            display: block;
-            opacity: 1;
-            transform: scaleY(1);
-        }
-    </style>
+  body { font-family: 'Nunito Sans', sans-serif; }
+  h1,h2,h3,.font-headline { font-family: 'Hanken Grotesk', sans-serif; }
+  .material-symbols-outlined { font-variation-settings: 'FILL' 0,'wght' 400,'GRAD' 0,'opsz' 24; }
+  .panel-enter { animation: panelIn .25s ease-out both; }
+  @keyframes panelIn {
+    from { opacity:0; transform:translateY(10px); }
+    to   { opacity:1; transform:translateY(0); }
+  }
+  select { background-image: url("data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236440A2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right .75rem center; background-size:1.25rem; }
+</style>
 </head>
 <body class="text-on-surface min-h-screen flex flex-col bg-white">
-<!-- Top Navigation Bar -->
+
+<!-- Header -->
 <header class="bg-primary sticky top-0 z-50 shadow-md">
-<nav class="grid grid-cols-3 items-center w-full px-margin-mobile md:px-gutter h-16">
-<div class="flex justify-start">
-<img alt="Century Advantage" class="h-10 w-auto object-contain" src="/logo/century-advantage-all-white.png">
-</div>
-<div class="flex justify-center">
-<a class="text-white font-bold border-b-2 border-accent pb-1" href="#">Registration</a>
-</div>
-<div class="flex justify-end gap-4">
-<button class="hidden md:flex items-center gap-2 text-white hover:text-accent transition-colors font-semibold text-sm">
-<span class="material-symbols-outlined text-[20px]">help_outline</span>
-                    Support
-                </button>
-<div class="md:hidden text-white">
-<span class="material-symbols-outlined cursor-pointer">menu</span>
-</div>
-</div>
-</nav>
+  <nav class="grid grid-cols-3 items-center w-full px-4 md:px-6 h-16">
+    <div class="flex justify-start">
+      <img alt="Century Advantage" class="h-10 w-auto object-contain" src="/logo/century-advantage-all-white.png">
+    </div>
+    <div class="flex justify-center">
+      <span class="text-white font-bold border-b-2 border-accent pb-1 text-sm">Registration</span>
+    </div>
+    <div class="flex justify-end">
+      <button class="hidden md:flex items-center gap-1.5 text-white hover:text-accent transition-colors font-semibold text-sm">
+        <span class="material-symbols-outlined text-[18px]">help_outline</span>Support
+      </button>
+    </div>
+  </nav>
 </header>
-<!-- Main Content Area -->
-<main class="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile relative overflow-hidden">
-<!-- Background Accents -->
-<div class="absolute -left-20 top-20 w-64 h-64 bg-mist/30 rounded-full blur-3xl -z-10"></div>
-<div class="absolute -right-20 bottom-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl -z-10"></div>
-<!-- Registration Stepper -->
-<div class="w-full max-w-form-max mb-stack-lg flex items-center justify-between">
-<div class="flex flex-col items-center gap-2">
-<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg">1</div>
-<span class="text-xs font-bold text-primary uppercase tracking-tighter">Lead Info</span>
-</div>
-<div class="flex-grow h-[2px] bg-primary/20 mx-4 mb-6"></div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold">2</div>
-<span class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Review</span>
-</div>
-<div class="flex-grow h-[2px] bg-primary/20 mx-4 mb-6"></div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold">3</div>
-<span class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Success</span>
-</div>
-</div>
-<!-- Form Card -->
-<section class="w-full max-w-form-max bg-white rounded-2xl shadow-[0px_10px_40px_rgba(100,64,162,0.1)] p-stack-lg md:p-10 border border-primary/5">
-<header class="mb-stack-lg text-center">
-<h1 class="text-3xl font-headline font-bold text-primary mb-2">Register New Lead</h1>
-<p class="text-on-surface-variant text-sm">Enter the prospective client details to initiate the sales journey.</p>
-</header>
-<form class="space-y-stack-md" id="leadRegistrationForm">
-<!-- System Fields -->
-<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-<div class="flex flex-col gap-1">
-<label class="text-xs font-bold uppercase tracking-wider text-primary/70" for="leadId">Lead ID</label>
-<input class="bg-mist/10 border border-mist/30 rounded-lg px-4 py-3 text-sm text-on-surface-variant cursor-not-allowed" id="leadId" readonly="" type="text" value="CA-2026-001">
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-xs font-bold uppercase tracking-wider text-primary/70" for="timestamp">Date &amp; Time</label>
-<input class="bg-mist/10 border border-mist/30 rounded-lg px-4 py-3 text-sm text-on-surface-variant cursor-not-allowed" id="timestamp" readonly="" type="text">
-</div>
-</div>
-<hr class="border-mist/20 my-6">
-<!-- Channel Partner Section -->
-<div class="space-y-stack-md">
-<h2 class="text-xs font-bold text-accent uppercase tracking-widest flex items-center gap-2 mb-2">
-<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                        Channel Partner Information
-                    </h2>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="cpName">CP Name <span class="text-accent">*</span></label>
-<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpName" placeholder="Enter partner name" required="" type="text">
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="cpMobile">CP Mobile <span class="text-accent">*</span></label>
-<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpMobile" placeholder="+91 00000 00000" required="" type="tel">
-</div>
-<div class="flex flex-col gap-1 md:col-span-2">
-<label class="text-sm font-semibold text-on-surface" for="cpEmail">CP Email <span class="text-accent">*</span></label>
-<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpEmail" placeholder="Enter partner email" required="" type="email">
-</div></div>
-</div>
-<!-- Lead Details Section -->
-<div class="space-y-stack-md pt-4">
-<h2 class="text-xs font-bold text-accent uppercase tracking-widest flex items-center gap-2 mb-2">
-<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
-                        Lead Information
-                    </h2>
-<div class="flex flex-col gap-2 mb-4">
-<label class="text-sm font-semibold text-on-surface">Primary Intent <span class="text-accent">*</span></label>
-<div class="grid grid-cols-2 gap-4">
-<label class="cursor-pointer">
-<input class="peer hidden" id="intentRent" name="primaryIntent" required="" type="radio" value="rent">
-<div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary/5 transition-all text-on-surface-variant peer-checked:text-primary hover:bg-mist/5">
-<span class="material-symbols-outlined text-3xl mb-2">key</span>
-<span class="font-headline font-semibold">Rent</span>
-</div>
-</label>
-<label class="cursor-pointer">
-<input class="peer hidden" id="intentResale" name="primaryIntent" required="" type="radio" value="resale">
-<div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary/5 transition-all text-on-surface-variant peer-checked:text-primary hover:bg-mist/5">
-<span class="material-symbols-outlined text-3xl mb-2">sell</span>
-<span class="font-headline font-semibold">Resale</span>
-</div>
-</label>
-</div>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="leadName">Lead Name <span class="text-accent">*</span></label>
-<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="leadName" placeholder="Full name of prospect" required="" type="text">
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="leadMobile">Lead Mobile <span class="text-accent">*</span></label>
-<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="leadMobile" placeholder="+91 00000 00000" required="" type="tel">
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="project">Project Interested In <span class="text-accent">*</span></label>
-<select class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none appearance-none bg-no-repeat bg-[right_1rem_center]" id="project" required="" style="background-image: url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236440A2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E&quot;);"><option class="" value="">Select a Project</option>
-<option class="" value="horizon">Century Horizon</option>
-<option class="" value="ethos">Century Ethos</option>
-<option class="" value="breeze">Century Breeze</option>
-<option class="" value="greens">Century Greens</option>
-<option class="" value="novus">Century Novus</option>
-<option class="" value="eden">Century Eden</option>
-<option class="" value="trails">Century Trails</option>
-<option class="" value="season">Century Season</option>
-<option class="" value="wintersun">Century Wintersun</option></select>
-</div><div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="propertyType">Property Type <span class="text-accent">*</span></label>
-<select class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none appearance-none bg-no-repeat bg-[right_1rem_center]" id="propertyType" required="" style="background-image: url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236440A2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E&quot;);">
-<option value="">Select Property Type</option>
-<option value="apartment">Apartment</option>
-<option value="plot">Plot</option>
-<option value="villa">Villa</option>
-</select>
-</div>
-<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-<div class="flex flex-col gap-1 relative">
-<label class="text-sm font-semibold text-on-surface" for="budget">Budget Range</label>
-<div class="relative w-full" id="budgetDropdownContainer">
-<button class="flex items-center justify-between w-full border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none bg-white text-left" id="budgetDropdownTrigger" type="button">
-<span class="text-on-surface-variant" id="budgetValueLabel">Select Budget</span>
-<svg class="w-5 h-5 text-primary transition-transform duration-200" fill="none" id="budgetChevron" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
-</svg>
-</button>
-<div class="absolute z-50 left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-primary/5 hidden overflow-hidden" id="budgetDropdownMenu">
-<div class="py-1 max-h-60 overflow-y-auto" id="budgetOptionsList"><div class="px-4 py-3 text-sm text-on-surface-variant hover:bg-mist/10 cursor-pointer transition-colors">Select Budget</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">1 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">2 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">3 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">5 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">10 Cr+</div></div>
-</div>
-</div>
-<!-- Hidden input to store selected value for form submission -->
-<input id="budget" name="budget" type="hidden" value="">
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="bhk">BHK Requirement</label>
-<div class="flex gap-2">
-<label class="flex-1">
-<input class="hidden peer" name="bhk" type="radio" value="2">
-<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">2</div>
-</label>
-<label class="flex-1">
-<input class="hidden peer" name="bhk" type="radio" value="3">
-<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">3</div>
-</label>
-<label class="flex-1">
-<input class="hidden peer" name="bhk" type="radio" value="4">
-<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">4+</div>
-</label>
-</div>
-</div>
-</div>
-<div class="flex flex-col gap-1">
-<label class="text-sm font-semibold text-on-surface" for="requirement">Additional Requirements</label>
-<textarea class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none outline-none" id="requirement" placeholder="Specify any particular preferences or notes..." rows="3"></textarea>
-</div>
-</div>
-<!-- CTA Button -->
-<div class="pt-6 flex flex-col gap-3">
-<button class="w-full h-12 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all active:scale-[0.98] duration-150 shadow-lg shadow-primary/20" type="submit">
-                        Submit Lead
-                    </button>
-</div>
-</form>
-</section>
-<!-- Decorative Floating Elements -->
-<div class="hidden xl:block fixed left-10 bottom-10 opacity-10 pointer-events-none text-primary">
-<span class="material-symbols-outlined text-[120px]">assured_workload</span>
-</div>
-<div class="hidden xl:block fixed right-10 top-1/2 -translate-y-1/2 opacity-5 pointer-events-none text-accent">
-<span class="material-symbols-outlined text-[240px]">shield_person</span>
-</div>
+
+<!-- Main -->
+<main class="flex-grow flex flex-col items-center py-8 px-4 relative overflow-hidden">
+  <div class="absolute -left-20 top-20 w-64 h-64 bg-[#A1D2F2]/20 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+  <div class="absolute -right-20 bottom-20 w-80 h-80 bg-[#F9685B]/8 rounded-full blur-3xl -z-10 pointer-events-none"></div>
+
+  <!-- Stepper -->
+  <div class="w-full max-w-[600px] mb-8 flex items-center justify-between">
+    <div class="flex flex-col items-center gap-1.5">
+      <div id="sc1" class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-lg transition-all duration-300">1</div>
+      <span id="sl1" class="text-xs font-bold text-primary uppercase tracking-tighter">Lead Info</span>
+    </div>
+    <div id="con1" class="flex-grow h-[2px] mx-3 mb-5 bg-primary/20 transition-all duration-500"></div>
+    <div class="flex flex-col items-center gap-1.5">
+      <div id="sc2" class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold text-sm transition-all duration-300">2</div>
+      <span id="sl2" class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Review</span>
+    </div>
+    <div id="con2" class="flex-grow h-[2px] mx-3 mb-5 bg-primary/20 transition-all duration-500"></div>
+    <div class="flex flex-col items-center gap-1.5">
+      <div id="sc3" class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold text-sm transition-all duration-300">3</div>
+      <span id="sl3" class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Success</span>
+    </div>
+  </div>
+
+  <!-- ── STEP 1: FORM ── -->
+  <section id="step1" class="panel-enter w-full max-w-[600px] bg-white rounded-2xl shadow-[0_10px_40px_rgba(100,64,162,0.10)] border border-primary/5 overflow-hidden">
+
+    <div class="bg-primary px-6 md:px-8 py-6">
+      <h1 class="text-2xl font-headline font-bold text-white">Register New Lead</h1>
+      <p class="text-white/70 text-sm mt-0.5">Fill in the prospect details to start the sales journey.</p>
+    </div>
+
+    <div class="px-6 md:px-8 pt-6 pb-8 space-y-5">
+
+      <!-- CP Setup Banner (one-time) -->
+      <div id="cpSetup" class="hidden">
+        <div class="bg-amber-50 border border-amber-200 rounded-xl p-5 space-y-4">
+          <p class="text-xs font-bold text-amber-700 uppercase tracking-wider flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1">info</span>
+            One-time identity setup
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div class="flex flex-col gap-1">
+              <label class="text-xs font-semibold text-on-surface-variant">Your Name *</label>
+              <input id="sName" type="text" placeholder="Full name"
+                class="border border-outline-variant rounded-lg px-3 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20">
+            </div>
+            <div class="flex flex-col gap-1">
+              <label class="text-xs font-semibold text-on-surface-variant">Mobile *</label>
+              <input id="sMobile" type="tel" placeholder="10-digit number"
+                class="border border-outline-variant rounded-lg px-3 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20">
+            </div>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-xs font-semibold text-on-surface-variant">Work Email *</label>
+            <input id="sEmail" type="email" placeholder="you@example.com"
+              class="border border-outline-variant rounded-lg px-3 py-2.5 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20">
+          </div>
+          <button id="saveCpBtn" type="button"
+            class="h-10 bg-primary text-white text-sm font-bold rounded-lg px-5 hover:bg-primary/90 transition-all">
+            Save &amp; Continue
+          </button>
+        </div>
+      </div>
+
+      <!-- CP Identity Strip -->
+      <div id="cpStrip" class="hidden"></div>
+
+      <!-- Lead ID + Timestamp -->
+      <div class="grid grid-cols-2 gap-3">
+        <div class="flex flex-col gap-1">
+          <label class="text-[11px] font-bold uppercase tracking-wider text-primary/60">Lead ID</label>
+          <input id="leadId" type="text" readonly
+            class="bg-mist/10 border border-mist/30 rounded-lg px-3 py-2.5 text-sm text-on-surface-variant cursor-not-allowed">
+        </div>
+        <div class="flex flex-col gap-1">
+          <label class="text-[11px] font-bold uppercase tracking-wider text-primary/60">Date &amp; Time</label>
+          <input id="timestamp" type="text" readonly
+            class="bg-mist/10 border border-mist/30 rounded-lg px-3 py-2.5 text-sm text-on-surface-variant cursor-not-allowed">
+        </div>
+      </div>
+
+      <hr class="border-outline-variant/30">
+
+      <!-- Lead Form -->
+      <form id="leadForm" novalidate class="space-y-5">
+
+        <h2 class="text-[11px] font-bold text-accent uppercase tracking-widest flex items-center gap-2">
+          <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block"></span>Lead Information
+        </h2>
+
+        <!-- Intent -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-semibold text-on-surface">Primary Intent <span class="text-accent">*</span></label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="cursor-pointer">
+              <input class="peer hidden" name="primaryIntent" type="radio" value="rent">
+              <div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-xl
+                          peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary
+                          text-on-surface-variant hover:bg-mist/5 transition-all">
+                <span class="material-symbols-outlined text-2xl mb-1">key</span>
+                <span class="font-headline font-semibold text-sm">Rent</span>
+              </div>
+            </label>
+            <label class="cursor-pointer">
+              <input class="peer hidden" name="primaryIntent" type="radio" value="resale">
+              <div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-xl
+                          peer-checked:border-primary peer-checked:bg-primary/5 peer-checked:text-primary
+                          text-on-surface-variant hover:bg-mist/5 transition-all">
+                <span class="material-symbols-outlined text-2xl mb-1">sell</span>
+                <span class="font-headline font-semibold text-sm">Resale</span>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Lead Name + Lead Mobile -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-semibold text-on-surface" for="leadName">Lead Name <span class="text-accent">*</span></label>
+            <input id="leadName" type="text" required placeholder="Full name of prospect"
+              class="border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20">
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-semibold text-on-surface" for="leadMobile">Lead Mobile <span class="text-accent">*</span></label>
+            <input id="leadMobile" type="tel" required placeholder="10-digit mobile number"
+              class="border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20">
+          </div>
+        </div>
+
+        <!-- Project + Property Type -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-semibold text-on-surface" for="project">Project Interested In <span class="text-accent">*</span></label>
+            <select id="project" required
+              class="border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20 appearance-none pr-10">
+              <option value="">Select a Project</option>
+            </select>
+          </div>
+          <div class="flex flex-col gap-1">
+            <label class="text-sm font-semibold text-on-surface" for="propertyType">Property Type <span class="text-accent">*</span></label>
+            <select id="propertyType" required
+              class="border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20 appearance-none pr-10">
+              <option value="">Select Property Type</option>
+              <option value="apartment">Apartment</option>
+              <option value="plot">Plot</option>
+              <option value="villa">Villa</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Budget Toggles -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-semibold text-on-surface">Budget Range</label>
+          <div id="budgetToggles" class="flex flex-wrap gap-2">
+            <!-- populated by JS -->
+          </div>
+          <input type="hidden" id="budget" value="">
+        </div>
+
+        <!-- BHK Toggles -->
+        <div class="flex flex-col gap-2">
+          <label class="text-sm font-semibold text-on-surface">BHK Requirement</label>
+          <div class="flex gap-2">
+            <label class="flex-1 cursor-pointer">
+              <input class="hidden peer" name="bhk" type="radio" value="2">
+              <div class="text-center py-2.5 border border-outline-variant rounded-lg text-sm font-bold text-on-surface-variant
+                          peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary
+                          hover:bg-mist/10 transition-all">2 BHK</div>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input class="hidden peer" name="bhk" type="radio" value="3">
+              <div class="text-center py-2.5 border border-outline-variant rounded-lg text-sm font-bold text-on-surface-variant
+                          peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary
+                          hover:bg-mist/10 transition-all">3 BHK</div>
+            </label>
+            <label class="flex-1 cursor-pointer">
+              <input class="hidden peer" name="bhk" type="radio" value="4">
+              <div class="text-center py-2.5 border border-outline-variant rounded-lg text-sm font-bold text-on-surface-variant
+                          peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary
+                          hover:bg-mist/10 transition-all">4+ BHK</div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Additional Notes -->
+        <div class="flex flex-col gap-1.5">
+          <label class="text-sm font-semibold text-on-surface" for="requirement">Additional Notes</label>
+          <textarea id="requirement" rows="3" placeholder="Any preferences, constraints, or special requirements…"
+            class="border border-outline-variant rounded-lg px-4 py-3 text-sm outline-none transition-all focus:border-primary focus:ring-1 focus:ring-primary/20 resize-none"></textarea>
+        </div>
+
+        <!-- Submit -->
+        <div class="pt-1">
+          <button type="submit"
+            class="w-full h-12 bg-primary text-white font-headline font-bold rounded-xl hover:bg-primary/90 active:scale-[0.99] transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2">
+            Review &amp; Submit
+            <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+          </button>
+        </div>
+
+      </form>
+    </div>
+  </section>
+
+  <!-- ── STEP 2: REVIEW ── -->
+  <section id="step2" class="hidden w-full max-w-[600px] bg-white rounded-2xl shadow-[0_10px_40px_rgba(100,64,162,0.10)] border border-primary/5 overflow-hidden">
+
+    <div class="bg-primary px-6 md:px-8 py-6">
+      <h1 class="text-2xl font-headline font-bold text-white">Review Your Submission</h1>
+      <p class="text-white/70 text-sm mt-0.5">Confirm the details before registering this lead.</p>
+    </div>
+
+    <div class="px-6 md:px-8 pt-6 pb-8 space-y-5">
+
+      <div id="reviewCpStrip"></div>
+
+      <div id="reviewGrid" class="rounded-xl border border-outline-variant/40 overflow-hidden divide-y divide-outline-variant/25 text-sm"></div>
+
+      <div class="flex gap-3 pt-1">
+        <button id="editBtn" type="button"
+          class="flex items-center gap-1.5 h-12 border-2 border-primary/20 text-primary font-bold rounded-xl px-5 hover:bg-primary/5 transition-all text-sm">
+          <span class="material-symbols-outlined text-[18px]">arrow_back</span>Edit
+        </button>
+        <button id="confirmBtn" type="button"
+          class="flex-1 h-12 bg-primary text-white font-headline font-bold rounded-xl hover:bg-primary/90 active:scale-[0.99] transition-all shadow-lg shadow-primary/20 flex items-center justify-center gap-2 text-sm">
+          <span class="material-symbols-outlined text-[18px]">check_circle</span>Confirm &amp; Submit
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="hidden xl:block fixed left-10 bottom-10 opacity-[0.06] pointer-events-none text-primary">
+    <span class="material-symbols-outlined text-[120px]">assured_workload</span>
+  </div>
 </main>
-<!-- Footer -->
-<!-- Simple Micro-interaction Script -->
+
 <script>
-        // Update current timestamp
-        function updateTime() {
-            const now = new Date();
-            const options = { 
-                year: 'numeric', 
-                month: 'short', 
-                day: 'numeric', 
-                hour: '2-digit', 
-                minute: '2-digit',
-                second: '2-digit',
-                hour12: true 
-            };
-            const timeEl = document.getElementById('timestamp');
-            if(timeEl) timeEl.value = now.toLocaleDateString('en-US', options);
-        }
-        
-        setInterval(updateTime, 1000);
-        updateTime();
+// ── CONFIG ────────────────────────────────────────────────────────────────────
 
-        // Custom Dropdown Logic
-        const budgetTrigger = document.getElementById('budgetDropdownTrigger');
-        const budgetMenu = document.getElementById('budgetDropdownMenu');
-        const budgetLabel = document.getElementById('budgetValueLabel');
-        const budgetHiddenInput = document.getElementById('budget');
-        const budgetChevron = document.getElementById('budgetChevron');
-        const budgetOptionsList = document.getElementById('budgetOptionsList');
+const SHEET_URL = 'https://script.google.com/macros/s/AKfycbznrTqcQpf-pdVB4lByi0nCBzOU7Qx5qV3bBF2DiB-swQHcfv7NeswVToA32VAf42-YyA/exec';
 
-        const budgetOptionsData = {
-            'rent': [
-                { value: '45k+', text: '45,000+' },
-                { value: '55k+', text: '55,000+' },
-                { value: '70k+', text: '70,000+' },
-                { value: '1l+', text: '1 Lakh +' }
-            ],
-            'resale': [
-                { value: '1cr+', text: '1 Cr+' },
-                { value: '2cr+', text: '2 Cr+' },
-                { value: '3cr+', text: '3 Cr+' },
-                { value: '5cr+', text: '5 Cr+' },
-                { value: '10cr+', text: '10 Cr+' }
-            ],
-            'buy': [
-                { value: '1cr+', text: '1 Cr+' },
-                { value: '2cr+', text: '2 Cr+' },
-                { value: '3cr+', text: '3 Cr+' },
-                { value: '5cr+', text: '5 Cr+' },
-                { value: '10cr+', text: '10 Cr+' }
-            ],
-            'default': [
-                { value: '1cr+', text: '1 Cr+' },
-                { value: '2cr+', text: '2 Cr+' },
-                { value: '3cr+', text: '3 Cr+' },
-                { value: '5cr+', text: '5 Cr+' },
-                { value: '10cr+', text: '10 Cr+' }
-            ]
-        };
+// Edit this mapping to control which projects appear for each budget toggle.
+const BUDGET_PROJECT_MAP = {
+  '45k+':  ['horizon', 'ethos', 'breeze'],
+  '55k+':  ['ethos', 'breeze', 'greens'],
+  '70k+':  ['greens', 'novus', 'eden'],
+  '1l+':   ['novus', 'eden', 'trails', 'season'],
+  '1cr+':  ['horizon', 'ethos', 'breeze', 'greens'],
+  '2cr+':  ['ethos', 'greens', 'novus', 'eden'],
+  '3cr+':  ['novus', 'eden', 'trails'],
+  '5cr+':  ['trails', 'season', 'wintersun'],
+  '10cr+': ['season', 'wintersun'],
+};
 
-        function toggleDropdown() {
-            const isOpen = !budgetMenu.classList.contains('hidden');
-            if (isOpen) {
-                closeDropdown();
-            } else {
-                openDropdown();
-            }
-        }
+const ALL_PROJECTS = [
+  { value: 'horizon',   label: 'Century Horizon' },
+  { value: 'ethos',     label: 'Century Ethos' },
+  { value: 'breeze',    label: 'Century Breeze' },
+  { value: 'greens',    label: 'Century Greens' },
+  { value: 'novus',     label: 'Century Novus' },
+  { value: 'eden',      label: 'Century Eden' },
+  { value: 'trails',    label: 'Century Trails' },
+  { value: 'season',    label: 'Century Season' },
+  { value: 'wintersun', label: 'Century Wintersun' },
+];
 
-        function openDropdown() {
-            budgetMenu.classList.remove('hidden');
-            budgetChevron.classList.add('rotate-180');
-        }
+const BUDGET_OPTIONS = {
+  rent:   [
+    { value: '45k+', label: '₹45k+' },
+    { value: '55k+', label: '₹55k+' },
+    { value: '70k+', label: '₹70k+' },
+    { value: '1l+',  label: '₹1L+' },
+  ],
+  resale: [
+    { value: '1cr+',  label: '₹1 Cr+' },
+    { value: '2cr+',  label: '₹2 Cr+' },
+    { value: '3cr+',  label: '₹3 Cr+' },
+    { value: '5cr+',  label: '₹5 Cr+' },
+    { value: '10cr+', label: '₹10 Cr+' },
+  ],
+};
 
-        function closeDropdown() {
-            budgetMenu.classList.add('hidden');
-            budgetChevron.classList.remove('rotate-180');
-        }
+// ── LEAD ID ───────────────────────────────────────────────────────────────────
 
-        function selectOption(value, text) {
-            budgetLabel.textContent = text;
-            budgetLabel.classList.remove('text-on-surface-variant');
-            budgetLabel.classList.add('text-on-surface');
-            budgetHiddenInput.value = value;
-            closeDropdown();
-        }
+const YEAR = new Date().getFullYear();
+const ID_KEY = `ca_lead_seq_${YEAR}`;
 
-        function updateBudgetUI(intent) {
-            const options = budgetOptionsData[intent] || budgetOptionsData['default'];
-            budgetOptionsList.innerHTML = '';
-            
-            // Add "Select Budget" as first option reset
-            const defaultOpt = document.createElement('div');
-            defaultOpt.className = 'px-4 py-3 text-sm text-on-surface-variant hover:bg-mist/10 cursor-pointer transition-colors';
-            defaultOpt.textContent = 'Select Budget';
-            defaultOpt.onclick = () => selectOption('', 'Select Budget');
-            budgetOptionsList.appendChild(defaultOpt);
+function peekLeadId() {
+  const n = parseInt(localStorage.getItem(ID_KEY) || '0', 10) + 1;
+  return `CA-${YEAR}-${String(n).padStart(3, '0')}`;
+}
 
-            options.forEach(opt => {
-                const item = document.createElement('div');
-                item.className = 'px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium';
-                item.textContent = opt.text;
-                item.onclick = () => selectOption(opt.value, opt.text);
-                budgetOptionsList.appendChild(item);
-            });
+function consumeLeadId() {
+  const n = parseInt(localStorage.getItem(ID_KEY) || '0', 10) + 1;
+  localStorage.setItem(ID_KEY, n);
+  return `CA-${YEAR}-${String(n).padStart(3, '0')}`;
+}
 
-            // Reset selection when intent changes
-            budgetLabel.textContent = 'Select Budget';
-            budgetLabel.classList.add('text-on-surface-variant');
-            budgetHiddenInput.value = '';
-        }
+document.getElementById('leadId').value = peekLeadId();
 
-        budgetTrigger.addEventListener('click', (e) => {
-            e.stopPropagation();
-            toggleDropdown();
-        });
+// ── TIMESTAMP ─────────────────────────────────────────────────────────────────
 
-        document.addEventListener('click', (e) => {
-            if (!budgetMenu.contains(e.target) && !budgetTrigger.contains(e.target)) {
-                closeDropdown();
-            }
-        });
+function updateTime() {
+  const el = document.getElementById('timestamp');
+  if (el) el.value = new Date().toLocaleString('en-IN', {
+    year: 'numeric', month: 'short', day: 'numeric',
+    hour: '2-digit', minute: '2-digit', hour12: true,
+  });
+}
+setInterval(updateTime, 1000);
+updateTime();
 
-        // Intent Logic
-        const intentRadios = document.querySelectorAll('input[name="primaryIntent"]');
-        intentRadios.forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                updateBudgetUI(e.target.value);
-            });
-        });
+// ── CP IDENTITY ───────────────────────────────────────────────────────────────
 
-        // Initialize with default UI
-        updateBudgetUI(''); 
+function getCp() {
+  try { return JSON.parse(localStorage.getItem('ca_cp') || 'null'); } catch { return null; }
+}
 
-        // ─── SHEET ENDPOINT ───────────────────────────────────────────────
-        // Paste your deployed Apps Script URL here after following setup steps
-        const SHEET_URL = 'https://script.google.com/macros/s/AKfycbznrTqcQpf-pdVB4lByi0nCBzOU7Qx5qV3bBF2DiB-swQHcfv7NeswVToA32VAf42-YyA/exec';
-        // ──────────────────────────────────────────────────────────────────
+function initials(name) {
+  return name.trim().split(/\s+/).map(w => w[0]).join('').slice(0, 2).toUpperCase();
+}
 
-        document.getElementById('leadRegistrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button[type="submit"]');
-            btn.disabled = true;
-            btn.classList.add('opacity-80');
-            btn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span> Processing...</span>';
+function cpStripHTML(cp) {
+  return `
+    <div class="bg-slate-50 border border-slate-200 rounded-xl p-4 flex items-center gap-3">
+      <div class="w-10 h-10 rounded-full bg-primary/15 text-primary flex items-center justify-center font-headline font-bold text-sm flex-shrink-0 select-none">
+        ${initials(cp.name)}
+      </div>
+      <div class="flex-grow min-w-0">
+        <p class="font-headline font-semibold text-on-surface text-sm">${cp.name}</p>
+        <p class="text-xs text-on-surface-variant mt-0.5 truncate">${cp.mobile} · ${cp.email}</p>
+      </div>
+      <div class="flex flex-col items-end gap-1.5 flex-shrink-0">
+        <div class="flex items-center gap-1 text-[11px] text-on-surface-variant bg-white border border-outline-variant rounded-full px-2.5 py-0.5">
+          <span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1">lock</span>
+          <span class="font-bold">You</span>
+        </div>
+        <button onclick="resetCp()" class="text-[11px] text-primary/50 hover:text-accent transition-colors underline">Not you?</button>
+      </div>
+    </div>`;
+}
 
-            const leadId  = document.getElementById('leadId').value || 'CA-2026-001';
-            const payload = {
-                leadId,
-                timestamp:    document.getElementById('timestamp').value,
-                cpName:       document.getElementById('cpName').value,
-                cpMobile:     document.getElementById('cpMobile').value,
-                cpEmail:      document.getElementById('cpEmail').value,
-                intent:       document.querySelector('input[name="primaryIntent"]:checked')?.value || '',
-                leadName:     document.getElementById('leadName').value,
-                leadMobile:   document.getElementById('leadMobile').value,
-                project:      document.getElementById('project').value,
-                propertyType: document.getElementById('propertyType').value,
-                budget:       document.getElementById('budget').value,
-                bhk:          document.querySelector('input[name="bhk"]:checked')?.value || '',
-                requirements: document.getElementById('requirement').value,
-            };
+function showCpStrip(cp) {
+  document.getElementById('cpSetup').classList.add('hidden');
+  const el = document.getElementById('cpStrip');
+  el.innerHTML = cpStripHTML(cp);
+  el.classList.remove('hidden');
+}
 
-            const submit = () =>
-                window.location.href = 'success.html?id=' + encodeURIComponent(leadId);
+function showCpSetup() {
+  document.getElementById('cpStrip').classList.add('hidden');
+  document.getElementById('cpSetup').classList.remove('hidden');
+}
 
-            if (!SHEET_URL || SHEET_URL === 'YOUR_APPS_SCRIPT_URL') {
-                // Script not yet configured — go straight to success
-                setTimeout(submit, 1500);
-                return;
-            }
+window.resetCp = function() {
+  localStorage.removeItem('ca_cp');
+  showCpSetup();
+};
 
-            fetch(SHEET_URL, {
-                method:  'POST',
-                mode:    'no-cors',               // Apps Script requires no-cors
-                headers: { 'Content-Type': 'application/json' },
-                body:    JSON.stringify(payload),
-            })
-            .finally(submit);                     // redirect regardless of network result
-        });
-    </script>
+const existingCp = getCp();
+if (existingCp) showCpStrip(existingCp); else showCpSetup();
 
+document.getElementById('saveCpBtn').addEventListener('click', () => {
+  const name   = document.getElementById('sName').value.trim();
+  const mobile = document.getElementById('sMobile').value.replace(/\D/g, '');
+  const email  = document.getElementById('sEmail').value.trim();
+  if (!name) { document.getElementById('sName').focus(); return; }
+  if (mobile.length !== 10) { showErr(document.getElementById('sMobile'), 'Enter a valid 10-digit mobile number'); return; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showErr(document.getElementById('sEmail'), 'Enter a valid email address'); return; }
+  const cp = { name, mobile, email };
+  localStorage.setItem('ca_cp', JSON.stringify(cp));
+  showCpStrip(cp);
+});
 
-</body></html>
+document.getElementById('sMobile').addEventListener('blur', function() {
+  const d = this.value.replace(/\D/g,'');
+  if (d && d.length !== 10) showErr(this, 'Enter a valid 10-digit mobile number');
+  else clearErr(this);
+});
+document.getElementById('sEmail').addEventListener('blur', function() {
+  if (this.value && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(this.value)) showErr(this, 'Enter a valid email address');
+  else clearErr(this);
+});
+
+// ── FIELD VALIDATION ──────────────────────────────────────────────────────────
+
+function showErr(input, msg) {
+  input.style.borderColor = '#ef4444';
+  input.style.boxShadow   = '0 0 0 1.5px #ef4444';
+  let p = input.parentNode.querySelector('.ferr');
+  if (!p) {
+    p = document.createElement('p');
+    p.className = 'ferr text-red-500 text-xs mt-1 flex items-center gap-1';
+    input.parentNode.appendChild(p);
+  }
+  p.innerHTML = `<span class="material-symbols-outlined text-[13px]" style="font-variation-settings:'FILL' 1">error</span>${msg}`;
+}
+
+function clearErr(input) {
+  input.style.borderColor = '';
+  input.style.boxShadow   = '';
+  const p = input.parentNode.querySelector('.ferr');
+  if (p) p.remove();
+}
+
+function validateMobile(input) {
+  const d = input.value.replace(/\D/g, '');
+  if (!input.value) { clearErr(input); return true; }
+  if (d.length !== 10) { showErr(input, 'Enter a valid 10-digit mobile number'); return false; }
+  clearErr(input); return true;
+}
+
+const leadMobileEl = document.getElementById('leadMobile');
+leadMobileEl.addEventListener('blur', () => validateMobile(leadMobileEl));
+leadMobileEl.addEventListener('input', () => {
+  if (leadMobileEl.value.replace(/\D/g,'').length === 10) clearErr(leadMobileEl);
+});
+
+// ── BUDGET TOGGLES ────────────────────────────────────────────────────────────
+
+const budgetContainer = document.getElementById('budgetToggles');
+const budgetHidden    = document.getElementById('budget');
+
+function renderBudgetToggles(intent) {
+  const opts = BUDGET_OPTIONS[intent] || BUDGET_OPTIONS.resale;
+  budgetHidden.value = '';
+  budgetContainer.innerHTML = '';
+  opts.forEach(opt => {
+    const lbl = document.createElement('label');
+    lbl.className = 'cursor-pointer';
+    lbl.innerHTML = `
+      <input type="radio" name="budgetToggle" value="${opt.value}" class="hidden peer">
+      <div class="px-4 py-2 border border-outline-variant rounded-lg text-sm font-semibold text-on-surface-variant select-none
+                  peer-checked:bg-primary/10 peer-checked:border-primary peer-checked:text-primary
+                  hover:bg-mist/10 transition-all">${opt.label}</div>`;
+    lbl.querySelector('input').addEventListener('change', e => {
+      budgetHidden.value = e.target.value;
+      filterProjects(e.target.value);
+    });
+    budgetContainer.appendChild(lbl);
+  });
+}
+
+// ── PROJECT FILTER ────────────────────────────────────────────────────────────
+
+function populateProjects(allowed) {
+  const sel = document.getElementById('project');
+  const prev = sel.value;
+  sel.innerHTML = '<option value="">Select a Project</option>';
+  const list = allowed ? ALL_PROJECTS.filter(p => allowed.includes(p.value)) : ALL_PROJECTS;
+  list.forEach(p => {
+    const o = document.createElement('option');
+    o.value = p.value; o.textContent = p.label;
+    sel.appendChild(o);
+  });
+  if (list.find(p => p.value === prev)) sel.value = prev;
+}
+
+function filterProjects(budgetVal) {
+  populateProjects(budgetVal ? BUDGET_PROJECT_MAP[budgetVal] : null);
+}
+
+populateProjects(null);
+renderBudgetToggles('resale');
+
+document.querySelectorAll('input[name="primaryIntent"]').forEach(r => {
+  r.addEventListener('change', e => {
+    renderBudgetToggles(e.target.value);
+    populateProjects(null);
+  });
+});
+
+// ── STEPPER ───────────────────────────────────────────────────────────────────
+
+function setStep(n) {
+  [1, 2, 3].forEach(i => {
+    const c = document.getElementById(`sc${i}`);
+    const l = document.getElementById(`sl${i}`);
+    if (i < n) {
+      c.className = 'w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center shadow-lg transition-all duration-300';
+      c.innerHTML = `<span class="material-symbols-outlined text-[15px]" style="font-variation-settings:'FILL' 1">check_circle</span>`;
+      if (l) l.className = 'text-xs font-bold text-primary uppercase tracking-tighter';
+    } else if (i === n) {
+      c.className = 'w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold text-sm shadow-lg transition-all duration-300';
+      c.textContent = i;
+      if (l) l.className = 'text-xs font-bold text-primary uppercase tracking-tighter';
+    } else {
+      c.className = 'w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold text-sm transition-all duration-300';
+      c.textContent = i;
+      if (l) l.className = 'text-xs font-bold text-on-surface-variant uppercase tracking-tighter';
+    }
+  });
+  document.getElementById('con1').style.background = n > 1 ? '#6440A2' : 'rgba(100,64,162,.2)';
+  document.getElementById('con2').style.background = n > 2 ? '#6440A2' : 'rgba(100,64,162,.2)';
+
+  const s1 = document.getElementById('step1');
+  const s2 = document.getElementById('step2');
+  if (n === 1) {
+    s2.classList.add('hidden');
+    s1.classList.remove('hidden');
+    s1.classList.add('panel-enter');
+  } else {
+    s1.classList.add('hidden');
+    s2.classList.remove('hidden');
+    s2.classList.add('panel-enter');
+  }
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── REVIEW PANEL ─────────────────────────────────────────────────────────────
+
+function buildReview() {
+  const cp = getCp() || {};
+  const reviewCpStrip = document.getElementById('reviewCpStrip');
+  reviewCpStrip.innerHTML = cp.name ? cpStripHTML(cp) : '';
+
+  const projEl = document.getElementById('project');
+  const propEl = document.getElementById('propertyType');
+  const intent = document.querySelector('input[name="primaryIntent"]:checked')?.value || '';
+  const bhk    = document.querySelector('input[name="bhk"]:checked')?.value || '';
+
+  const rows = [
+    ['Lead ID',        document.getElementById('leadId').value],
+    ['Date & Time',    document.getElementById('timestamp').value],
+    ['Intent',         intent ? intent.charAt(0).toUpperCase() + intent.slice(1) : '—'],
+    ['Lead Name',      document.getElementById('leadName').value   || '—'],
+    ['Lead Mobile',    document.getElementById('leadMobile').value || '—'],
+    ['Project',        projEl.options[projEl.selectedIndex]?.text  || '—'],
+    ['Property Type',  propEl.options[propEl.selectedIndex]?.text  || '—'],
+    ['Budget',         budgetHidden.value || '—'],
+    ['BHK',            bhk ? bhk + ' BHK' : '—'],
+    ['Notes',          document.getElementById('requirement').value || '—'],
+  ];
+
+  document.getElementById('reviewGrid').innerHTML = rows.map(([k, v]) => `
+    <div class="flex items-start gap-4 px-4 py-3 hover:bg-slate-50 transition-colors">
+      <span class="text-[11px] font-bold text-on-surface-variant uppercase tracking-wider w-24 flex-shrink-0 pt-0.5">${k}</span>
+      <span class="text-sm text-on-surface">${v}</span>
+    </div>`).join('');
+}
+
+// ── FORM SUBMIT → STEP 2 ─────────────────────────────────────────────────────
+
+document.getElementById('leadForm').addEventListener('submit', e => {
+  e.preventDefault();
+
+  if (!getCp()) {
+    showCpSetup();
+    document.getElementById('sName').focus();
+    return;
+  }
+
+  if (!document.querySelector('input[name="primaryIntent"]:checked')) {
+    alert('Please select a Primary Intent (Rent or Resale).');
+    return;
+  }
+
+  const mobileOk = validateMobile(leadMobileEl);
+  if (!mobileOk) { leadMobileEl.focus(); return; }
+
+  const req = ['leadName','leadMobile','project','propertyType'];
+  let bad = null;
+  req.forEach(id => {
+    const el = document.getElementById(id);
+    if (!el.value.trim()) {
+      el.style.borderColor = '#ef4444';
+      el.style.boxShadow   = '0 0 0 1.5px #ef4444';
+      if (!bad) bad = el;
+    } else {
+      el.style.borderColor = '';
+      el.style.boxShadow   = '';
+    }
+  });
+  if (bad) { bad.focus(); return; }
+
+  buildReview();
+  setStep(2);
+});
+
+// ── EDIT BUTTON ───────────────────────────────────────────────────────────────
+
+document.getElementById('editBtn').addEventListener('click', () => setStep(1));
+
+// ── CONFIRM & SUBMIT ──────────────────────────────────────────────────────────
+
+document.getElementById('confirmBtn').addEventListener('click', () => {
+  const btn = document.getElementById('confirmBtn');
+  btn.disabled = true;
+  btn.innerHTML = '<span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full inline-block mr-2"></span>Submitting…';
+
+  const cp = getCp() || {};
+  const leadId = consumeLeadId();
+
+  const payload = {
+    leadId,
+    timestamp:    document.getElementById('timestamp').value,
+    cpName:       cp.name   || '',
+    cpMobile:     cp.mobile || '',
+    cpEmail:      cp.email  || '',
+    intent:       document.querySelector('input[name="primaryIntent"]:checked')?.value || '',
+    leadName:     document.getElementById('leadName').value,
+    leadMobile:   document.getElementById('leadMobile').value,
+    project:      document.getElementById('project').value,
+    propertyType: document.getElementById('propertyType').value,
+    budget:       budgetHidden.value,
+    bhk:          document.querySelector('input[name="bhk"]:checked')?.value || '',
+    requirements: document.getElementById('requirement').value,
+  };
+
+  const go = () => window.location.href = 'success.html?id=' + encodeURIComponent(leadId);
+
+  fetch(SHEET_URL, {
+    method:  'POST',
+    mode:    'no-cors',
+    headers: { 'Content-Type': 'application/json' },
+    body:    JSON.stringify(payload),
+  }).finally(go);
+});
+</script>
+
+</body>
+</html>
