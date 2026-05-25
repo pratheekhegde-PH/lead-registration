@@ -406,24 +406,19 @@
         // Initialize with default UI
         updateBudgetUI(''); 
 
-        // Form Submission Effect
+        // Form Submission
         document.getElementById('leadRegistrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
-            const originalText = btn.innerText;
-            
             btn.disabled = true;
             btn.classList.add('opacity-80');
             btn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span> Processing...</span>';
-            
+
+            // Generate sequential lead ID
+            const leadId = document.getElementById('leadId').value || 'CA-2026-001';
+
             setTimeout(() => {
-                alert('Lead Registered Successfully!');
-                btn.disabled = false;
-                btn.classList.remove('opacity-80');
-                btn.innerText = originalText;
-                this.reset();
-                updateTime();
-                updateBudgetUI(''); // Reset budget UI
+                window.location.href = 'success.html?id=' + encodeURIComponent(leadId);
             }, 1500);
         });
     </script>
