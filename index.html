@@ -406,7 +406,11 @@
         // Initialize with default UI
         updateBudgetUI(''); 
 
-        // Form Submission
+        // ─── SHEET ENDPOINT ───────────────────────────────────────────────
+        // Paste your deployed Apps Script URL here after following setup steps
+        const SHEET_URL = 'YOUR_APPS_SCRIPT_URL';
+        // ──────────────────────────────────────────────────────────────────
+
         document.getElementById('leadRegistrationForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const btn = e.target.querySelector('button[type="submit"]');
@@ -414,12 +418,39 @@
             btn.classList.add('opacity-80');
             btn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span> Processing...</span>';
 
-            // Generate sequential lead ID
-            const leadId = document.getElementById('leadId').value || 'CA-2026-001';
+            const leadId  = document.getElementById('leadId').value || 'CA-2026-001';
+            const payload = {
+                leadId,
+                timestamp:    document.getElementById('timestamp').value,
+                cpName:       document.getElementById('cpName').value,
+                cpMobile:     document.getElementById('cpMobile').value,
+                cpEmail:      document.getElementById('cpEmail').value,
+                intent:       document.querySelector('input[name="primaryIntent"]:checked')?.value || '',
+                leadName:     document.getElementById('leadName').value,
+                leadMobile:   document.getElementById('leadMobile').value,
+                project:      document.getElementById('project').value,
+                propertyType: document.getElementById('propertyType').value,
+                budget:       document.getElementById('budget').value,
+                bhk:          document.querySelector('input[name="bhk"]:checked')?.value || '',
+                requirements: document.getElementById('requirement').value,
+            };
 
-            setTimeout(() => {
+            const submit = () =>
                 window.location.href = 'success.html?id=' + encodeURIComponent(leadId);
-            }, 1500);
+
+            if (!SHEET_URL || SHEET_URL === 'YOUR_APPS_SCRIPT_URL') {
+                // Script not yet configured — go straight to success
+                setTimeout(submit, 1500);
+                return;
+            }
+
+            fetch(SHEET_URL, {
+                method:  'POST',
+                mode:    'no-cors',               // Apps Script requires no-cors
+                headers: { 'Content-Type': 'application/json' },
+                body:    JSON.stringify(payload),
+            })
+            .finally(submit);                     // redirect regardless of network result
         });
     </script>
 
