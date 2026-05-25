@@ -1,0 +1,432 @@
+<!DOCTYPE html><html class="light" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Lead Registration | Century Advantage</title>
+<!-- Brand Fonts: Stolzl (Primary) & Avenir (Secondary) - Using fallbacks as CDN availability varies -->
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&amp;family=Montserrat:wght@600;700&amp;family=Nunito+Sans:wght@400;600&amp;family=Metropolis:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#6440A2",
+                        "accent": "#F9685B",
+                        "heritage": "#FCFFC8",
+                        "mist": "#A1D2F2",
+                        "surface": "#F8F9FF",
+                        "on-surface": "#0b1c30",
+                        "on-surface-variant": "#4a4550",
+                        "outline-variant": "#ccc3d2",
+                        "surface-container": "#002233",
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-lg": "32px",
+                        "stack-md": "16px",
+                        "container-max": "1200px",
+                        "stack-sm": "8px",
+                        "margin-mobile": "16px",
+                        "form-max": "560px",
+                        "gutter": "24px"
+                    },
+                    "fontFamily": {
+                        "headline": ["Hanken Grotesk", "Montserrat", "sans-serif"],
+                        "body": ["Nunito Sans", "Metropolis", "sans-serif"],
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .form-input-focus:focus {
+            outline: none;
+            border-color: #6440A2;
+            box-shadow: 0 0 0 2px rgba(100, 64, 162, 0.1);
+        }
+        body { font-family: 'Nunito Sans', 'Metropolis', sans-serif; }
+        h1, h2, h3, .font-headline { font-family: 'Hanken Grotesk', 'Montserrat', sans-serif; }
+        
+        /* Custom Dropdown Animation */
+        #budgetDropdownMenu {
+            transition: opacity 0.15s ease-out, transform 0.15s ease-out;
+            transform-origin: top;
+        }
+        #budgetDropdownMenu.hidden {
+            display: none;
+            opacity: 0;
+            transform: scaleY(0.95);
+        }
+        #budgetDropdownMenu:not(.hidden) {
+            display: block;
+            opacity: 1;
+            transform: scaleY(1);
+        }
+    </style>
+</head>
+<body class="text-on-surface min-h-screen flex flex-col bg-white">
+<!-- Top Navigation Bar -->
+<header class="bg-primary sticky top-0 z-50 shadow-md">
+<nav class="grid grid-cols-3 items-center w-full px-margin-mobile md:px-gutter h-16">
+<div class="flex justify-start">
+<img alt="Century Advantage" class="h-10 w-auto object-contain" src="/logo/century-advantage-all-white.png">
+</div>
+<div class="flex justify-center">
+<a class="text-white font-bold border-b-2 border-accent pb-1" href="#">Registration</a>
+</div>
+<div class="flex justify-end gap-4">
+<button class="hidden md:flex items-center gap-2 text-white hover:text-accent transition-colors font-semibold text-sm">
+<span class="material-symbols-outlined text-[20px]">help_outline</span>
+                    Support
+                </button>
+<div class="md:hidden text-white">
+<span class="material-symbols-outlined cursor-pointer">menu</span>
+</div>
+</div>
+</nav>
+</header>
+<!-- Main Content Area -->
+<main class="flex-grow flex flex-col items-center justify-center py-stack-lg px-margin-mobile relative overflow-hidden">
+<!-- Background Accents -->
+<div class="absolute -left-20 top-20 w-64 h-64 bg-mist/30 rounded-full blur-3xl -z-10"></div>
+<div class="absolute -right-20 bottom-20 w-80 h-80 bg-accent/10 rounded-full blur-3xl -z-10"></div>
+<!-- Registration Stepper -->
+<div class="w-full max-w-form-max mb-stack-lg flex items-center justify-between">
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-primary text-white flex items-center justify-center font-bold shadow-lg">1</div>
+<span class="text-xs font-bold text-primary uppercase tracking-tighter">Lead Info</span>
+</div>
+<div class="flex-grow h-[2px] bg-primary/20 mx-4 mb-6"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold">2</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Review</span>
+</div>
+<div class="flex-grow h-[2px] bg-primary/20 mx-4 mb-6"></div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-10 h-10 rounded-full bg-white border-2 border-primary/20 text-on-surface-variant flex items-center justify-center font-bold">3</div>
+<span class="text-xs font-bold text-on-surface-variant uppercase tracking-tighter">Success</span>
+</div>
+</div>
+<!-- Form Card -->
+<section class="w-full max-w-form-max bg-white rounded-2xl shadow-[0px_10px_40px_rgba(100,64,162,0.1)] p-stack-lg md:p-10 border border-primary/5">
+<header class="mb-stack-lg text-center">
+<h1 class="text-3xl font-headline font-bold text-primary mb-2">Register New Lead</h1>
+<p class="text-on-surface-variant text-sm">Enter the prospective client details to initiate the sales journey.</p>
+</header>
+<form class="space-y-stack-md" id="leadRegistrationForm">
+<!-- System Fields -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1">
+<label class="text-xs font-bold uppercase tracking-wider text-primary/70" for="leadId">Lead ID</label>
+<input class="bg-mist/10 border border-mist/30 rounded-lg px-4 py-3 text-sm text-on-surface-variant cursor-not-allowed" id="leadId" readonly="" type="text" value="CA-2026-001">
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-xs font-bold uppercase tracking-wider text-primary/70" for="timestamp">Date &amp; Time</label>
+<input class="bg-mist/10 border border-mist/30 rounded-lg px-4 py-3 text-sm text-on-surface-variant cursor-not-allowed" id="timestamp" readonly="" type="text">
+</div>
+</div>
+<hr class="border-mist/20 my-6">
+<!-- Channel Partner Section -->
+<div class="space-y-stack-md">
+<h2 class="text-xs font-bold text-accent uppercase tracking-widest flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        Channel Partner Information
+                    </h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="cpName">CP Name <span class="text-accent">*</span></label>
+<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpName" placeholder="Enter partner name" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="cpMobile">CP Mobile <span class="text-accent">*</span></label>
+<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpMobile" placeholder="+91 00000 00000" required="" type="tel">
+</div>
+<div class="flex flex-col gap-1 md:col-span-2">
+<label class="text-sm font-semibold text-on-surface" for="cpEmail">CP Email <span class="text-accent">*</span></label>
+<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="cpEmail" placeholder="Enter partner email" required="" type="email">
+</div></div>
+</div>
+<!-- Lead Details Section -->
+<div class="space-y-stack-md pt-4">
+<h2 class="text-xs font-bold text-accent uppercase tracking-widest flex items-center gap-2 mb-2">
+<span class="w-1.5 h-1.5 rounded-full bg-accent"></span>
+                        Lead Information
+                    </h2>
+<div class="flex flex-col gap-2 mb-4">
+<label class="text-sm font-semibold text-on-surface">Primary Intent <span class="text-accent">*</span></label>
+<div class="grid grid-cols-2 gap-4">
+<label class="cursor-pointer">
+<input class="peer hidden" id="intentRent" name="primaryIntent" required="" type="radio" value="rent">
+<div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary/5 transition-all text-on-surface-variant peer-checked:text-primary hover:bg-mist/5">
+<span class="material-symbols-outlined text-3xl mb-2">key</span>
+<span class="font-headline font-semibold">Rent</span>
+</div>
+</label>
+<label class="cursor-pointer">
+<input class="peer hidden" id="intentResale" name="primaryIntent" required="" type="radio" value="resale">
+<div class="flex flex-col items-center justify-center p-4 border-2 border-outline-variant rounded-lg peer-checked:border-primary peer-checked:bg-primary/5 transition-all text-on-surface-variant peer-checked:text-primary hover:bg-mist/5">
+<span class="material-symbols-outlined text-3xl mb-2">sell</span>
+<span class="font-headline font-semibold">Resale</span>
+</div>
+</label>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="leadName">Lead Name <span class="text-accent">*</span></label>
+<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="leadName" placeholder="Full name of prospect" required="" type="text">
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="leadMobile">Lead Mobile <span class="text-accent">*</span></label>
+<input class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none" id="leadMobile" placeholder="+91 00000 00000" required="" type="tel">
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="project">Project Interested In <span class="text-accent">*</span></label>
+<select class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none appearance-none bg-no-repeat bg-[right_1rem_center]" id="project" required="" style="background-image: url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236440A2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E&quot;);"><option class="" value="">Select a Project</option>
+<option class="" value="horizon">Century Horizon</option>
+<option class="" value="ethos">Century Ethos</option>
+<option class="" value="breeze">Century Breeze</option>
+<option class="" value="greens">Century Greens</option>
+<option class="" value="novus">Century Novus</option>
+<option class="" value="eden">Century Eden</option>
+<option class="" value="trails">Century Trails</option>
+<option class="" value="season">Century Season</option>
+<option class="" value="wintersun">Century Wintersun</option></select>
+</div><div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="propertyType">Property Type <span class="text-accent">*</span></label>
+<select class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none appearance-none bg-no-repeat bg-[right_1rem_center]" id="propertyType" required="" style="background-image: url(&quot;data:image/svg+xml;charset=utf-8,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3E%3Cpath stroke='%236440A2' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3E%3C/svg%3E&quot;);">
+<option value="">Select Property Type</option>
+<option value="apartment">Apartment</option>
+<option value="plot">Plot</option>
+<option value="villa">Villa</option>
+</select>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+<div class="flex flex-col gap-1 relative">
+<label class="text-sm font-semibold text-on-surface" for="budget">Budget Range</label>
+<div class="relative w-full" id="budgetDropdownContainer">
+<button class="flex items-center justify-between w-full border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all outline-none bg-white text-left" id="budgetDropdownTrigger" type="button">
+<span class="text-on-surface-variant" id="budgetValueLabel">Select Budget</span>
+<svg class="w-5 h-5 text-primary transition-transform duration-200" fill="none" id="budgetChevron" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M19 9l-7 7-7-7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</button>
+<div class="absolute z-50 left-0 right-0 mt-2 bg-white rounded-xl shadow-xl border border-primary/5 hidden overflow-hidden" id="budgetDropdownMenu">
+<div class="py-1 max-h-60 overflow-y-auto" id="budgetOptionsList"><div class="px-4 py-3 text-sm text-on-surface-variant hover:bg-mist/10 cursor-pointer transition-colors">Select Budget</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">1 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">2 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">3 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">5 Cr+</div><div class="px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium">10 Cr+</div></div>
+</div>
+</div>
+<!-- Hidden input to store selected value for form submission -->
+<input id="budget" name="budget" type="hidden" value="">
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="bhk">BHK Requirement</label>
+<div class="flex gap-2">
+<label class="flex-1">
+<input class="hidden peer" name="bhk" type="radio" value="2">
+<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">2</div>
+</label>
+<label class="flex-1">
+<input class="hidden peer" name="bhk" type="radio" value="3">
+<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">3</div>
+</label>
+<label class="flex-1">
+<input class="hidden peer" name="bhk" type="radio" value="4">
+<div class="text-center py-2.5 border border-outline-variant rounded-lg peer-checked:bg-primary peer-checked:text-white peer-checked:border-primary transition-all cursor-pointer text-sm font-bold">4+</div>
+</label>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-1">
+<label class="text-sm font-semibold text-on-surface" for="requirement">Additional Requirements</label>
+<textarea class="border border-outline-variant rounded-lg px-4 py-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent transition-all resize-none outline-none" id="requirement" placeholder="Specify any particular preferences or notes..." rows="3"></textarea>
+</div>
+</div>
+<!-- CTA Button -->
+<div class="pt-6 flex flex-col gap-3">
+<button class="w-full h-12 bg-primary text-white font-bold rounded-xl hover:bg-primary/90 transition-all active:scale-[0.98] duration-150 shadow-lg shadow-primary/20" type="submit">
+                        Submit Lead
+                    </button>
+</div>
+</form>
+</section>
+<!-- Decorative Floating Elements -->
+<div class="hidden xl:block fixed left-10 bottom-10 opacity-10 pointer-events-none text-primary">
+<span class="material-symbols-outlined text-[120px]">assured_workload</span>
+</div>
+<div class="hidden xl:block fixed right-10 top-1/2 -translate-y-1/2 opacity-5 pointer-events-none text-accent">
+<span class="material-symbols-outlined text-[240px]">shield_person</span>
+</div>
+</main>
+<!-- Footer -->
+<!-- Simple Micro-interaction Script -->
+<script>
+        // Update current timestamp
+        function updateTime() {
+            const now = new Date();
+            const options = { 
+                year: 'numeric', 
+                month: 'short', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit',
+                second: '2-digit',
+                hour12: true 
+            };
+            const timeEl = document.getElementById('timestamp');
+            if(timeEl) timeEl.value = now.toLocaleDateString('en-US', options);
+        }
+        
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Custom Dropdown Logic
+        const budgetTrigger = document.getElementById('budgetDropdownTrigger');
+        const budgetMenu = document.getElementById('budgetDropdownMenu');
+        const budgetLabel = document.getElementById('budgetValueLabel');
+        const budgetHiddenInput = document.getElementById('budget');
+        const budgetChevron = document.getElementById('budgetChevron');
+        const budgetOptionsList = document.getElementById('budgetOptionsList');
+
+        const budgetOptionsData = {
+            'rent': [
+                { value: '45k+', text: '45,000+' },
+                { value: '55k+', text: '55,000+' },
+                { value: '70k+', text: '70,000+' },
+                { value: '1l+', text: '1 Lakh +' }
+            ],
+            'resale': [
+                { value: '1cr+', text: '1 Cr+' },
+                { value: '2cr+', text: '2 Cr+' },
+                { value: '3cr+', text: '3 Cr+' },
+                { value: '5cr+', text: '5 Cr+' },
+                { value: '10cr+', text: '10 Cr+' }
+            ],
+            'buy': [
+                { value: '1cr+', text: '1 Cr+' },
+                { value: '2cr+', text: '2 Cr+' },
+                { value: '3cr+', text: '3 Cr+' },
+                { value: '5cr+', text: '5 Cr+' },
+                { value: '10cr+', text: '10 Cr+' }
+            ],
+            'default': [
+                { value: '1cr+', text: '1 Cr+' },
+                { value: '2cr+', text: '2 Cr+' },
+                { value: '3cr+', text: '3 Cr+' },
+                { value: '5cr+', text: '5 Cr+' },
+                { value: '10cr+', text: '10 Cr+' }
+            ]
+        };
+
+        function toggleDropdown() {
+            const isOpen = !budgetMenu.classList.contains('hidden');
+            if (isOpen) {
+                closeDropdown();
+            } else {
+                openDropdown();
+            }
+        }
+
+        function openDropdown() {
+            budgetMenu.classList.remove('hidden');
+            budgetChevron.classList.add('rotate-180');
+        }
+
+        function closeDropdown() {
+            budgetMenu.classList.add('hidden');
+            budgetChevron.classList.remove('rotate-180');
+        }
+
+        function selectOption(value, text) {
+            budgetLabel.textContent = text;
+            budgetLabel.classList.remove('text-on-surface-variant');
+            budgetLabel.classList.add('text-on-surface');
+            budgetHiddenInput.value = value;
+            closeDropdown();
+        }
+
+        function updateBudgetUI(intent) {
+            const options = budgetOptionsData[intent] || budgetOptionsData['default'];
+            budgetOptionsList.innerHTML = '';
+            
+            // Add "Select Budget" as first option reset
+            const defaultOpt = document.createElement('div');
+            defaultOpt.className = 'px-4 py-3 text-sm text-on-surface-variant hover:bg-mist/10 cursor-pointer transition-colors';
+            defaultOpt.textContent = 'Select Budget';
+            defaultOpt.onclick = () => selectOption('', 'Select Budget');
+            budgetOptionsList.appendChild(defaultOpt);
+
+            options.forEach(opt => {
+                const item = document.createElement('div');
+                item.className = 'px-4 py-3 text-sm text-on-surface hover:bg-mist/10 cursor-pointer transition-colors font-medium';
+                item.textContent = opt.text;
+                item.onclick = () => selectOption(opt.value, opt.text);
+                budgetOptionsList.appendChild(item);
+            });
+
+            // Reset selection when intent changes
+            budgetLabel.textContent = 'Select Budget';
+            budgetLabel.classList.add('text-on-surface-variant');
+            budgetHiddenInput.value = '';
+        }
+
+        budgetTrigger.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleDropdown();
+        });
+
+        document.addEventListener('click', (e) => {
+            if (!budgetMenu.contains(e.target) && !budgetTrigger.contains(e.target)) {
+                closeDropdown();
+            }
+        });
+
+        // Intent Logic
+        const intentRadios = document.querySelectorAll('input[name="primaryIntent"]');
+        intentRadios.forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                updateBudgetUI(e.target.value);
+            });
+        });
+
+        // Initialize with default UI
+        updateBudgetUI(''); 
+
+        // Form Submission Effect
+        document.getElementById('leadRegistrationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            
+            btn.disabled = true;
+            btn.classList.add('opacity-80');
+            btn.innerHTML = '<span class="flex items-center justify-center gap-2"><span class="animate-spin h-4 w-4 border-2 border-white border-t-transparent rounded-full"></span> Processing...</span>';
+            
+            setTimeout(() => {
+                alert('Lead Registered Successfully!');
+                btn.disabled = false;
+                btn.classList.remove('opacity-80');
+                btn.innerText = originalText;
+                this.reset();
+                updateTime();
+                updateBudgetUI(''); // Reset budget UI
+            }, 1500);
+        });
+    </script>
+
+
+</body></html>
